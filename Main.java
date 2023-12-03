@@ -1,8 +1,12 @@
 import java.io.*;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
+
 public class Main {
-    static Scanner read= new Scanner(System.in);
+    static Scanner read = new Scanner(System.in);
+
     public static void main(String[] args) throws IOException {
         File archivoEntrada = new File("DatosTomados.txt");
         FileReader lectorArchivo = new FileReader(archivoEntrada);
@@ -28,7 +32,7 @@ public class Main {
         System.out.println("   ---------------------------");
         System.out.println("| BIENVENIDO, ELIJE UNA OPCIÓN: |");
         System.out.println("   ---------------------------");
-        //se tiene que realizar con un ciclo ó invertir la lógica 
+        // se tiene que realizar con un ciclo ó invertir la lógica
         switch (Opcion()) {
             case 1:
                 BuscarPorNombre(Nombres, Nacimiento, Estatura);
@@ -38,11 +42,12 @@ public class Main {
                 break;
             default:
                 System.out.println("Por favor, selecciona una opción válida");
-                Opcion();       //no contempla que el usuario erre 2 veces
+                Opcion(); // no contempla que el usuario erre 2 veces
                 break;
         }
     }
-    public static int Opcion(){
+
+    public static int Opcion() {
         System.out.println("MENÚ PRINCIPAL");
         System.out.println("-------------------------------------------------------------------");
         System.out.println("0.Salir");
@@ -56,27 +61,33 @@ public class Main {
         System.out.println("8.Encontrar a personas que sean más altas que una estatura dada");
         System.out.println("9.Encontrar la persona más joven");
         System.out.println("10.Agregar a una persona");
-        int opc = read.nextInt(); 
+        int opc = read.nextInt();
         return opc;
     }
-    public static void BuscarPorNombre(String Nombres[][],int Nacimiento[][],Double Estatura[][]) {
+
+    public static void BuscarPorNombre(String Nombres[][], int Nacimiento[][], Double Estatura[][]) {
         read.nextLine();
         System.out.println("Ingresa un nombre");
-        String arre[]=new String[3];
-        String nomIngresado=read.nextLine();
+        String arre[] = new String[3];
+        String nomIngresado = read.nextLine();
         boolean encontrado = false;
-        for(int i = 0; i < 10 && encontrado == false; i++){
-            for (int y=0; y<6; y++){
+        for (int i = 0; i < 10 && encontrado == false; i++) {
+            for (int y = 0; y < 6; y++) {
                 if (nomIngresado.equals(Nombres[i][y])) {
                     encontrado = true;
-                    arre[0]=Nombres[i][y];
-                    arre[1]=Integer.toString(Nacimiento[i][y]);
-                    arre[2]=Double.toString(Estatura[i][y]);
+                    arre[0] = Nombres[i][y];
+                    arre[1] = Integer.toString(Nacimiento[i][y]);
+                    arre[2] = Double.toString(Estatura[i][y]);
                 }
             }
         }
-        for (int x=0; x<arre.length; x++){
-            System.out.println(arre[x]);
+        if (Arrays.stream(arre).allMatch(Objects::nonNull)) {
+            for (int x = 0; x < arre.length; x++) {
+                System.out.println(arre[x]);
+            }
+        } else {
+            System.out.println(
+                    "El nombre que intentas buscar no se encuentra en mi base de datos, deseas agregarlo ahora? (y/N)");
         }
     }
 
