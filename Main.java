@@ -72,9 +72,18 @@ public class Main {
         String arre[] = new String[3];
         String nomIngresado = read.nextLine();
         boolean encontrado = false;
-        for (int i = 0; i < 10 && encontrado == false; i++) {//no es necesario el boolean ni nada similar solo es buena practica y eficiente, ademas se pudiese quedar tal como lo tenias y manejar esa exception con un bloque try-catch, en donde con el catch atrapas la exception e imprimes que no fue encontrado(te ahorras condiciones y algo de codigo) pero no creo que a dalia le parezca buena idea en fin esa es otra opción 
+        for (int i = 0; i < 10 && encontrado == false; i++) {/*no es necesario el boolean ni nada
+            similar solo es buena practica y eficiente, ademas se pudiese quedar tal como lo
+            tenias y manejar esa exception con un bloque try-catch, en donde con el catch
+            atrapas la exception e imprimes que no fue encontrado(te ahorras condiciones y algo
+            de codigo) pero no creo que a dalia le parezca buena idea en fin esa es otra opción */
             for (int y = 0; y < 6; y++) {
-                if (nomIngresado.equals(Nombres[i][y])) {//la excepción que daba era pq cuando no se encuentra el nombre, la matriz se recorre por completo, sin embargo como la matriz también contiene elementos null´s cuando llegas a uno de esos elementos y tratas de llamar al método .equals(Objeto), aquí es cuando te da un error ya que no puedes llamar al método con un Objeto que sea null, resumiendo solo invertí la condición  
+                if (nomIngresado.equals(Nombres[i][y])) {/*la excepción que daba era pq cuando no 
+                    se encuentra el nombre, la matriz se recorre por completo, sin embargo como la
+                    matriz también contiene elementos null´s cuando llegas a uno de esos 
+                    elementos y tratas de llamar al método .equals(Objeto), aquí es cuando te da
+                    un error ya que no puedes llamar al método con un Objeto que sea null,
+                    resumiendo solo invertí la condición  */
                     encontrado = true;
                     arre[0] = Nombres[i][y];
                     arre[1] = Integer.toString(Nacimiento[i][y]);
@@ -82,7 +91,10 @@ public class Main {
                 }
             }
         }
-        if (Arrays.stream(arre).allMatch(Objects::nonNull)) {//para que dalia no diga nada se puede recorrer el arreglo y si las posiciones son vacías o null, pd no es necesario recorrer todo el arreglo ya que en la lógica siempre se llena el arreglo o no por lo que podríamos solo hacer una condición que verifique si la primer posición es null  
+        if (Arrays.stream(arre).allMatch(Objects::nonNull)) {/*para que dalia no diga nada se
+            puede recorrer el arreglo y si las posiciones son vacías o null, pd no es necesario
+            recorrer todo el arreglo ya que en la lógica siempre se llena el arreglo o no por lo 
+            que podríamos solo hacer una condición que verifique si la primer posición es null  */
             for (int x = 0; x < arre.length; x++) {
                 System.out.println(arre[x]);
             }
