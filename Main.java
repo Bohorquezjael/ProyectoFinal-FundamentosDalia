@@ -64,18 +64,16 @@ public class Main {
         System.out.println("Ingresa un nombre");
         String arre[]=new String[3];
         String nomIngresado=read.nextLine();
-        int i = 0;
-        boolean encontrado = false;
-        while(i < 10 && encontrado == false){
+        //boolean encontrado = false;
+        for(int i = 0; i < 10; i++){
             for (int y=0; y<6; y++){
                 if (nomIngresado.equals(Nombres[i][y])) {
-                    encontrado = true;
+                    //encontrado = true;
                     arre[0]=Nombres[i][y];
                     arre[1]=Integer.toString(Nacimiento[i][y]);
                     arre[2]=Double.toString(Estatura[i][y]);
                 }
             }
-            i++;
         }
         for (int x=0; x<arre.length; x++){
             System.out.println(arre[x]);
